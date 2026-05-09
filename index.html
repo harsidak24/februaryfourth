@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>On February 4th</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Space+Mono&display=swap');
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --white: #e8e4dc;
+      --dim: #9a9488;
+      --faint: #3a3830;
+    }
+
+    html {
+      background: #000;
+      color: var(--white);
+      font-family: 'IM Fell English', serif;
+      scroll-behavior: smooth;
+    }
+
+    /* ── LANDING ── */
+    #landing {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #landing::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, #0d0d0d 0%, #000 70%);
+      z-index: 0;
+    }
+
+    .title-block {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 680px;
+      padding: 0 2rem;
+    }
+
+    .title-block h1 {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      line-height: 1.6;
+      color: var(--white);
+      opacity: 0;
+      animation: fadeIn 3s ease forwards;
+      animation-delay: 120s;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--faint);
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 123s;
+      text-transform: uppercase;
+    }
+
+    .scroll-hint::after {
+      content: '';
+      display: block;
+      margin: 0.6rem auto 0;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--faint), transparent);
+    }
+
+    /* ── NAMES SECTION ── */
+    #names {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 2rem;
+      position: relative;
+    }
+
+    .names-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      color: var(--faint);
+      text-transform: uppercase;
+      margin-bottom: 4rem;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 0.2s;
+      animation-play-state: paused;
+    }
+
+    .names-label.visible {
+      animation-play-state: running;
+    }
+
+    .names-list {
+      list-style: none;
+      text-align: center;
+      max-width: 560px;
+      width: 100%;
+    }
+
+    .names-list li {
+      font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+      font-style: italic;
+      color: var(--dim);
+      line-height: 2.2;
+      letter-spacing: 0.01em;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 1.2s ease, transform 1.2s ease;
+    }
+
+    .names-list li.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .names-list li.unknown {
+      color: var(--faint);
+      font-style: normal;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+    }
+
+    .names-list li span.age {
+      font-style: normal;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--faint);
+      margin-left: 0.5em;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── FOOTER ── */
+    #footer {
+      padding: 4rem 2rem 6rem;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+
+    #footer.visible {
+      opacity: 1;
+    }
+
+    #footer p {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--faint);
+      letter-spacing: 0.15em;
+      line-height: 2;
+      text-transform: uppercase;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LANDING -->
+  <section id="landing">
+    <div class="title-block">
+      <h1>On February 4th, 2026, Israeli fire killed 24 Palestinians in Gaza.</h1>
+    </div>
+    <div class="scroll-hint">scroll</div>
+  </section>
+
+  <!-- NAMES -->
+  <section id="names">
+    <p class="names-label" id="names-label">Their names</p>
+    <ul class="names-list" id="names-list">
+      <li>Soliman Farid Soliman Abu Sitah <span class="age">35</span></li>
+      <li>Farid Abu Sitah <span class="age">12</span></li>
+      <li>Mahmoud Ayman al-Ras <span class="age">21</span></li>
+      <li>Yousif Mohammed Abdel Wahab Haboush <span class="age">39</span></li>
+      <li>Ahmed Tal'at Mahmoud Haboush <span class="age">22</span></li>
+      <li>Bilal Ashraf Mahmoud Haboush <span class="age">17</span></li>
+      <li>Rital Mahmoud Mohammed Haboush <span class="age">12</span></li>
+      <li>'Ali Ahmed Khalil Selmi <span class="age">55</span></li>
+      <li>Buthainah Mohammed Abdel Hameed Selmi <span class="age">53</span></li>
+      <li>Saqer Bader Mohie al-Deen al-Hatou <span class="age">5 months</span></li>
+      <li>Asmaa' Hamadah <span class="age">43</span></li>
+      <li>Farah 'Amer Jaber Hamadah <span class="age">19</span></li>
+      <li>Wateen al-Khabbaz <span class="age">4 days</span></li>
+      <li>Rahaf Rami Issam Abu Jamea <span class="age">10</span></li>
+      <li>Rimas Rami Issam Abu Jamea <span class="age">11</span></li>
+      <li>Hussain Hasan Hussain al-Sumairi <span class="age">47</span></li>
+      <li>'Ali Fathi Mustafa al-Razainah <span class="age">44</span></li>
+      <li>Ghada Ar-Razainah <span class="age">10</span></li>
+      <li>Mohammed Issam Hasan al-Habil <span class="age">33</span></li>
+      <li>Mira al-Khabbaz <span class="age">3 months</span></li>
+      <li class="unknown">— unidentified</li>
+      <li class="unknown">— unidentified</li>
+      <li class="unknown">— unidentified</li>
+      <li class="unknown">— unidentified</li>
+    </ul>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <p>Gaza, February 4th, 2026</p>
+    <p style="margin-top:1rem;">Source: Euro-Med Human Rights Monitor</p>
+  </footer>
+
+  <!-- AUDIO — autoplay on load, loops -->
+  <audio id="audio" src="0001.mp3" autoplay loop></audio>
+
+  <script>
+    // Staggered reveal for names on scroll
+    const items = document.querySelectorAll('.names-list li');
+    const label = document.getElementById('names-label');
+    const footer = document.getElementById('footer');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    items.forEach((item, i) => {
+      item.style.transitionDelay = `${i * 0.15}s`;
+      observer.observe(item);
+    });
+
+    observer.observe(label);
+    observer.observe(footer);
+  </script>
+
+</body>
+</html>
