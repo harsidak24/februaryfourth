@@ -232,11 +232,39 @@
     <p style="margin-top:1rem;">Source: Euro-Med Human Rights Monitor</p>
   </footer>
 
-  <!-- AUDIO — autoplay on load, loops -->
-  <audio id="audio" src="0001.mp3" autoplay loop></audio>
+  <!-- CLICK TO ENTER OVERLAY -->
+  <div id="enter" style="
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 1.5s ease;
+  ">
+    <span style="
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      color: #3a3830;
+      text-transform: uppercase;
+    ">press anywhere</span>
+  </div>
+
+  <audio id="audio" src="0001.mp3" loop></audio>
 
   <script>
-    // Staggered reveal for names on scroll
+    const enter = document.getElementById('enter');
+    const audio = document.getElementById('audio');
+
+    enter.addEventListener('click', () => {
+      audio.play();
+      enter.style.opacity = '0';
+      setTimeout(() => enter.style.display = 'none', 1500);
+    });
+
     const items = document.querySelectorAll('.names-list li');
     const label = document.getElementById('names-label');
     const footer = document.getElementById('footer');
